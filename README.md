@@ -1,7 +1,5 @@
 # **advent-of-code-2022**
 
----
-
 ## 🔑 Key:  
 🚧 - Work In Progress  
 ✅ - Completed
