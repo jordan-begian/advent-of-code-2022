@@ -1,21 +1,23 @@
 var fs = require('fs')
 
-function calorieCounter() {
-    const file = "day-1/resources/day-1-puzzle-input.txt";
+const file = "day-1/resources/day-1-puzzle-input.txt";
+const elvesCalories = getPuzzleInput(file);
+const result = findLargestCalorieTotal(elvesCalories);
 
-    const data = fs.readFileSync(file).toString().split("\n\n");
+console.log(result);
 
-    const elves = [];
-    data.forEach((calorie) => 
-        elves.push(calorie.split("\n"))
+function getPuzzleInput(file) {
+    const puzzleInput = []
+    fs.readFileSync(file).toString().split("\n\n").forEach((item) =>
+        puzzleInput.push(item.split('\n'))
     );
-
-    const sums = [];
-    elves.forEach((elf) =>
-      sums.push(elf.reduce((a, b) => parseFloat(a) + parseFloat(b), 0))
-    );
-
-    return Math.max(...sums);
+    return puzzleInput;
 }
 
-console.log(calorieCounter());
+function findLargestCalorieTotal(elvesCalories) {
+    const sums = [];
+    elvesCalories.forEach((elf) =>
+      sums.push(elf.reduce((a, b) => parseFloat(a) + parseFloat(b), 0))
+    );
+    return Math.max(...sums);
+}
