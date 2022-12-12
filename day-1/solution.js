@@ -19,6 +19,5 @@ function findLargestCalorieTotal(elvesCalories) {
     elvesCalories.forEach((elf) =>
       sums.push(elf.reduce((a, b) => parseFloat(a) + parseFloat(b), 0))
     );
-
     return Math.max(...sums);
 }
