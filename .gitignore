@@ -59,8 +59,6 @@ web_modules/
 .npm
 
 # Packages
-package-lock.json
-package.json
 
 # Optional eslint cache
 .eslintcache
