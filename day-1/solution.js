@@ -7,12 +7,10 @@ const result = findLargestCalorieTotal(elvesCalories);
 console.log(result);
 
 function getPuzzleInput(file) {
-  const puzzleInput = [];
-  readFileSync(file)
+  return readFileSync(file)
     .toString()
     .split("\n\n")
-    .forEach((item) => puzzleInput.push(item.split("\n")));
-  return puzzleInput;
+    .map((item) => item.split("\n"));
 }
 
 function findLargestCalorieTotal(elvesCalories) {
