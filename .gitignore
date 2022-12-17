@@ -59,6 +59,8 @@ web_modules/
 .npm
 
 # Packages
+.eslintrc.json
+.prettierrc.json
 package-lock.json
 package.json
 

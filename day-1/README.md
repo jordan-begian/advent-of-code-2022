@@ -1,6 +1,6 @@
 # Advent of Code: Day 1 
 
-## Calorie Counter
+## [Calorie Counter](https://adventofcode.com/2022/day/1)
 
 Santa's reindeer typically eat regular reindeer food, but they need a lot of magical energy to deliver presents on Christmas. For that, their favorite snack is a special type of star fruit that only grows deep in the jungle. The Elves have brought you on their annual expedition to the grove where the fruit grows.
 
@@ -14,7 +14,7 @@ The Elves take turns writing down the number of Calories contained by the variou
 
 For example, suppose the Elves finish writing their items' Calories and end up with the following list:
 
-``` text
+```md
 1000
 2000
 3000
