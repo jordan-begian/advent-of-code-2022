@@ -1,6 +1,6 @@
-// Work on solution here.
 import { readFileSync } from "fs";
 
+// enums to use for finding the priority value of a lowercase letter item
 const lowerCase = Object.freeze({
   a: 1,
   b: 2,
@@ -30,6 +30,7 @@ const lowerCase = Object.freeze({
   z: 26,
 });
 
+// enums to use for finding the priority value of a uppercase letter item
 const upperCase = Object.freeze({
   A: 27,
   B: 28,
@@ -60,11 +61,13 @@ const upperCase = Object.freeze({
 });
 
 const filePath = "day-3/resources/day-3-puzzle-input.txt";
+const rucksacks = getPuzzleInput(filePath);
+const matchingItems = filterMatches(rucksacks);
+const sumOfPriorities = findSumOfPriorities(matchingItems);
 
-const puzzleInput = getPuzzleInput(filePath);
+console.log(sumOfPriorities);
 
-console.log(puzzleInput);
-
+// gets puzzle input by reading each line in a text file and splitting each string in half
 function getPuzzleInput(filePath) {
   return readFileSync(filePath)
     .toString()
@@ -73,4 +76,25 @@ function getPuzzleInput(filePath) {
       item.slice(0, item.length / 2),
       item.slice(item.length / 2, item.length),
     ]);
+}
+
+// finds any matching letter and filters out duplicates if any item has duplicate matches
+function filterMatches(rucksacks) {
+  return rucksacks.flatMap((rucksack) => [
+    ...new Set(
+      rucksack[0].split("").filter((letter) => rucksack[1].includes(letter))
+    ),
+  ]);
+}
+
+// finds the value of each letter via enums and sums the list of values
+function findSumOfPriorities(matchingItems) {
+  const lowerCasePattern = new RegExp("[a-z]");
+  return matchingItems
+    .map((letter) =>
+      letter.toString().match(lowerCasePattern)
+        ? lowerCase[letter]
+        : upperCase[letter]
+    )
+    .reduce((a, b) => a + b, 0);
 }
