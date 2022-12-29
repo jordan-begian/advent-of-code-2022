@@ -1,17 +1,10 @@
 import { readFileSync } from "fs";
 
-// static array method to get the range between 2 numbers as an array
-// example - Array.range(3,6) will output [ 3, 4, 5, 6 ]
-Array.range = (start, end) =>
-  Array.from({ length: end - start + 1 }, (_v, k) => k + start);
-
-// class to hold start, end, and range values
-// range value will mainly be utilized to find solution
+// class to hold start and end values
 class Elf {
   constructor(start, end) {
     this.start = start;
     this.end = end;
-    this.range = Array.range(this.start, this.end);
   }
 }
 
@@ -36,9 +29,18 @@ function getPuzzleInput(filePath) {
     );
 }
 
+// checks to see if either section range is contained within each elf pair
+// filters out how many are contained and returns the amount of contained pairs
 function findFullyContainedRanges(elfPairs) {
-  return elfPairs.map((pair) =>
-    pair[0].range.filter((range) => pair[1].range.includes(range))
-  );
-  //TODO - find if either pair range is fully contained by overlap values
+  return elfPairs
+    .map((pair) => {
+      if (pair[0].start >= pair[1].start && pair[0].end <= pair[1].end) {
+        return true;
+      }
+      if (pair[1].start >= pair[0].start && pair[1].end <= pair[0].end) {
+        return true;
+      }
+      return false;
+    })
+    .filter((result) => result == true).length;
 }
